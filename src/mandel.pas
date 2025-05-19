@@ -32,26 +32,26 @@ END;
 PROCEDURE Header;
 BEGIN
   WriteLn('GTFractals for MS-DOS');
-  Writeln('(c)Copyright 1992-2025 by Gennaro Eduardo Tangari.');
-  Writeln;
+  WriteLn('(c)Copyright 1992-2025 by Gennaro Eduardo Tangari.');
+  WriteLn;
 END;
 
 PROCEDURE ShowParameters;
 BEGIN
-  Writeln; Writeln('Here the provided parameters:');
-  Writeln('X-Min: ', realMin);
-  Writeln('X-Max: ', realMax);
-  Writeln('Y-Min: ', imagMin);
-  Writeln('Y-Max: ', imagMax);
-  Writeln('Iteractions: ', maxIterations);
-  Writeln;
+  WriteLn; WriteLn('Here the provided parameters:');
+  WriteLn('X-Min: ', realMin);
+  WriteLn('X-Max: ', realMax);
+  WriteLn('Y-Min: ', imagMin);
+  WriteLn('Y-Max: ', imagMax);
+  WriteLn('Iteractions: ', maxIterations);
+  WriteLn;
 END;
 
 BEGIN
   ClrScr; Beep; Header;
 
   Write('X-Min (default = -2.25): ');
-  Readln(paramString);
+  ReadLn(paramString);
 
   IF paramString = '' THEN
     realMin := -2.25
@@ -62,7 +62,7 @@ BEGIN
   END;
 
   Write('X-Max (default = 0.75): ');
-  Readln(paramString);
+  ReadLn(paramString);
 
   IF paramString = '' THEN
     realMax := 0.75
@@ -73,7 +73,7 @@ BEGIN
   END;
 
   Write('Y-Min (default = -1.5): ');
-  Readln(paramString);
+  ReadLn(paramString);
 
   IF paramString = '' THEN
     imagMin := -1.5
@@ -84,7 +84,7 @@ BEGIN
   END;
 
   Write('Y-Max (default = 1.5): ');
-  Readln(paramString);
+  ReadLn(paramString);
 
   IF paramString = '' THEN
     imagMax := 1.5
@@ -95,7 +95,7 @@ BEGIN
   END;
 
   Write('Iterations (default = 150): ');
-  Readln(paramString);
+  ReadLn(paramString);
 
   IF paramString = '' THEN
     maxIterations := 150
@@ -112,7 +112,6 @@ BEGIN
   gDriver := Detect;
   gMode := VGAMed;
   InitGraph(gDriver, gMode, 'C:\SOFTWARE\TP\BGI');
-
 
   screenWidth := GetMaxX;
   screenHeight := GetMaxY;
@@ -137,7 +136,7 @@ BEGIN
         tempReal := Sqr(zReal) - Sqr(zImag) + realPart;
         zImag := 2.0 * zReal * zImag + imagPart;
         zReal := tempReal;
-        Inc(iter);
+        iter := iter + 1;
       END;
 
       IF iter = maxIterations THEN
