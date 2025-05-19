@@ -11,3 +11,5 @@ Unfortunately, the original Turbo Pascal source code — which I kept lovingly (
 What I'm sharing here now is a faithful recreation of that very first version, written in Turbo Pascal 6, as close as possible to how it looked and behaved back in 1992.
 
 This simple program isn't just about drawing fractals — it tells a bit of my personal story. 🧡
+
+PS: Please mind that the source code shared here is intended to be as close as possible to what I wrote in 1992, so pretend to read the code written by a 13/14 year old kid in the early 90s :-)
