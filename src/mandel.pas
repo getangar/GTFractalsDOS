@@ -31,27 +31,36 @@ END;
 
 PROCEDURE Header;
 BEGIN
+  TextColor(14);
   WriteLn('GTFractals for MS-DOS');
-  WriteLn('(c)Copyright 1992-2025 by Gennaro Eduardo Tangari.');
-  WriteLn;
+  Writeln('(c)Copyright 1992-2025 by Gennaro Eduardo Tangari.');
+  TextColor(7);
+  Writeln;
 END;
 
 PROCEDURE ShowParameters;
 BEGIN
-  WriteLn; WriteLn('Here the provided parameters:');
-  WriteLn('X-Min: ', realMin);
-  WriteLn('X-Max: ', realMax);
-  WriteLn('Y-Min: ', imagMin);
-  WriteLn('Y-Max: ', imagMax);
-  WriteLn('Iteractions: ', maxIterations);
-  WriteLn;
+  TextColor(15);
+  Writeln; Writeln('Here the provided parameters:');
+  Write('X-Min: '); TextColor(7); Writeln(realMin:2:8);
+  TextColor(15);
+  Write('X-Max: '); TextColor(7); Writeln(realMax:2:8);
+  TextColor(15);
+  Write('Y-Min: '); TextColor(7); Writeln(imagMin:2:8);
+  TextColor(15);
+  Write('Y-Max: '); TextColor(7); Writeln(imagMax:2:8);
+  TextColor(15);
+  Write('Iteractions: '); TextColor(7); Writeln(maxIterations);
+  Writeln;
 END;
 
 BEGIN
   ClrScr; Beep; Header;
-
-  Write('X-Min (default = -2.25): ');
-  ReadLn(paramString);
+  TextColor(15);
+  Write('X-Min');
+  TextColor(7);
+  Write(' (default = -2.25): ');
+  Readln(paramString);
 
   IF paramString = '' THEN
     realMin := -2.25
@@ -61,8 +70,11 @@ BEGIN
     realMin := paramValue;
   END;
 
-  Write('X-Max (default = 0.75): ');
-  ReadLn(paramString);
+  TextColor(15);
+  Write('X-Max');
+  TextColor(7);
+  Write(' (default = 0.75): ');
+  Readln(paramString);
 
   IF paramString = '' THEN
     realMax := 0.75
@@ -72,8 +84,11 @@ BEGIN
     realMax := paramValue;
   END;
 
-  Write('Y-Min (default = -1.5): ');
-  ReadLn(paramString);
+  TextColor(15);
+  Write('Y-Min');
+  TextColor(7);
+  Write(' (default = -1.5): ');
+  Readln(paramString);
 
   IF paramString = '' THEN
     imagMin := -1.5
@@ -83,8 +98,11 @@ BEGIN
     imagMin := paramValue;
   END;
 
-  Write('Y-Max (default = 1.5): ');
-  ReadLn(paramString);
+  TextColor(15);
+  Write('Y-Max');
+  TextColor(7);
+  Write(' (default = 1.5): ');
+  Readln(paramString);
 
   IF paramString = '' THEN
     imagMax := 1.5
@@ -94,8 +112,11 @@ BEGIN
     imagMax := paramValue;
   END;
 
-  Write('Iterations (default = 150): ');
-  ReadLn(paramString);
+  TextColor(15);
+  Write('Iterations');
+  TextColor(7);
+  Write(' (default = 150): ');
+  Readln(paramString);
 
   IF paramString = '' THEN
     maxIterations := 150
@@ -107,6 +128,7 @@ BEGIN
 
   ShowParameters;
 
+  TextColor(15 + Blink);
   WriteLn('Press <ENTER> to start');
   ReadLn;
   gDriver := Detect;
@@ -136,7 +158,7 @@ BEGIN
         tempReal := Sqr(zReal) - Sqr(zImag) + realPart;
         zImag := 2.0 * zReal * zImag + imagPart;
         zReal := tempReal;
-        iter := iter + 1;
+        Inc(iter);
       END;
 
       IF iter = maxIterations THEN
@@ -148,6 +170,8 @@ BEGIN
 
   Beep; ReadLn;
   CloseGraph;
-  ClrScr;
-  WriteLn('Thanks for using GTFractals!');
+  TextColor(15);
+  WriteLn('Thanks for using GTFractals, goodbye!');
+  TextColor(7); Write('Press <ENTER> to quit'); ReadLn;
+  clrscr;
 END.
